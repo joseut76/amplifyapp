@@ -1,15 +1,30 @@
 import logo from './logo.svg';
-import './App.css';
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
-function App() {
+function App({ signOut }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello from V2</h1>
-      </header>
-    </div>
+    <View className="App">
+      <Card>
+        <Image src={logo} className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
   );
 }
-
-export default App;
+/*
+In this code, we've used the withAuthenticator component. 
+This component will scaffold out an entire user authentication 
+flow allowing users to sign up, sign in, reset their password, 
+and confirm sign-in for multifactor authentication (MFA). 
+We have also added a Sign Out button to log users out.
+*/
+export default withAuthenticator(App);
